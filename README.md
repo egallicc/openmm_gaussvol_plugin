@@ -12,7 +12,7 @@ This software is released under the LGPL license. See LICENSE.
 
 ## Credits
 
-This software is written and maintained by Emilio Gallicchio <egallicchio@brooklyn.cuny.edu> with support from a grant from the National Science Foundation (ACI 1440665).
+This software is developed and maintained by Emilio Gallicchio <egallicchio@brooklyn.cuny.edu> with support from a grant from the National Science Foundation (ACI 1440665).
 
 The plugin interface is based on the [openmmexampleplugin](https://github.com/peastman/openmmexampleplugin) by Peter Eastman.
 
@@ -64,6 +64,46 @@ python test_gaussvol.py
 ```
 
 where `<openmm_dir>` is the OpenMM installation directory.
+
+## API
+
+The plugin implements an energy function of the form E=γA where γ is the surface tension parameter and A is the solute surface area. It is added to OpenMM's force stack and configured using standard OpenMM API calls (see `TestReferenceGVolForce.cpp` in the `test` directory of each platform and `desmonddmsfile.py` in `example` for specific examples).
+
+Schematically in C++:
+```
+#include "openmm/GVolForce.h"
+...
+GVolForce* force = new GVolForce();
+system.addForce(force);
+```
+
+and in Python:
+
+```
+from GVolplugin import GVolForce
+gv = GVolForce()
+...
+sys.addForce(gv)
+```
+
+The force is configured by assigning to each atom a radius, a surface tension parameter, and a boolean indicating whether the atom is a hydrogen atom:
+
+```
+double radius, gamma;
+bool ishydrogen;
+...
+force->addParticle(radius, gamma, ishydrogen);
+```
+
+or, in Python,
+
+```
+gv.addParticle(radiusN, gammaN, h_flag)
+```
+
+Again, consult the `TestReferenceGVolForce.cpp` and `desmonddmsfile.py` for detailed examples.
+
+The radius is given in nm, and the surface tension parameter is in kj/mol/nm^2. While the API allows setting individual surface tension parameters to each atom, GaussVol currently returns correct gradients only when all of the atoms have the same surface tension parameter. This behavior is consistent with a model of cavity formation in the solvent (see reference 2).
 
 ## Relevant references:
 
