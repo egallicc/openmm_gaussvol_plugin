@@ -103,7 +103,7 @@ gv.addParticle(radiusN, gammaN, h_flag)
 
 Again, consult the `TestReferenceGVolForce.cpp` and `desmonddmsfile.py` for detailed examples.
 
-The radius is given in nm, and the surface tension parameter is in kj/mol/nm^2. While the API allows setting individual surface tension parameters to each atom, GaussVol currently returns correct gradients only when all of the atoms have the same surface tension parameter. This behavior is consistent with a model of cavity formation in the solvent (see reference 2).
+The radius is given in nm, and the surface tension parameter is in kj/mol/nm^2. While the API allows setting individual surface tension parameters to each atom, GaussVol currently returns correct gradients only when all of the atoms have the same surface tension parameter. This behavior is consistent with a model of cavity formation in the solvent (see reference 3).
 
 ## Relevant references:
 
