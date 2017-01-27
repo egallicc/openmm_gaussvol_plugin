@@ -107,7 +107,7 @@ The radius is given in nm, and the surface tension parameter is in kj/mol/nm^2. 
 
 ## Relevant references:
 
-1. Baofeng Zhang, Denise Kilburg, Peter Eastman, Vijay S. Pande, Emilio Gallicchio. Efficient Gaussian Density Formulation of Volume and Surface Areas of Macromolecules on Graphical Processing Units. J. Comp. Chem (2017). [pdf of submitted manuscript](https://www.dropbox.com/s/5mwljefi4yf985e/Zhang_et_al.pdf?dl=0)
+1. Baofeng Zhang, Denise Kilburg, Peter Eastman, Vijay S. Pande, Emilio Gallicchio. Efficient Gaussian Density Formulation of Volume and Surface Areas of Macromolecules on Graphical Processing Units. J. Comp. Chem (2017). [pdf of submitted manuscript](http://www.compmolbiophysbc.org/publications)
 2. Grant, J. A., and B. T. Pickup. "A Gaussian description of molecular shape." The Journal of Physical Chemistry 99.11 (1995): 3503-3510.
 3. Gallicchio, Emilio, Kristina Paris, and Ronald M. Levy. "The AGBNP2 implicit solvation model." Journal of chemical theory and computation 5.9 (2009): 2544-2564.
 
