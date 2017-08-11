@@ -20,7 +20,7 @@ prop = {"OpenCLPrecision" : "single"}
 
 integrator = LangevinIntegrator(300*kelvin, 1.0/picosecond, 0.001*picoseconds)
 simulation = Simulation(testDes.topology, system, integrator, platform, prop)
-print "Using platform %s" % simulation.context.getPlatform().getName()
+print ("Using platform %s" % simulation.context.getPlatform().getName())
 
 simulation.context.setPositions(testDes.positions)
 simulation.context.setVelocities(testDes.velocities)
