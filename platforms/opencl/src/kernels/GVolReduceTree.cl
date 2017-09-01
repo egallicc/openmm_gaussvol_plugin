@@ -18,7 +18,7 @@ __kernel void reduceSelfVolumes_buffer(int bufferSize, int numBuffers,
 #else
 				       __global real4* restrict forceBuffers,
 #endif
-				       __global real*  restrict energyBuffer
+				       __global mixed*  restrict energyBuffer
 ){
   uint id = get_global_id(0);
 
