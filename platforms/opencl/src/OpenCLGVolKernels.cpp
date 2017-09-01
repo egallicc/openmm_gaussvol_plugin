@@ -336,6 +336,7 @@ void OpenCLCalcGVolForceKernel::initialize(const System& system, const GVolForce
     gammaParam1->upload(gammaVector1);
     gammaParam2->upload(gammaVector2);
     ishydrogenParam->upload(ishydrogenVector);
+
     useCutoff = (force.getNonbondedMethod() != GVolForce::NoCutoff);
     usePeriodic = (force.getNonbondedMethod() != GVolForce::NoCutoff && force.getNonbondedMethod() != GVolForce::CutoffNonPeriodic);
     useExclusions = false;
@@ -464,7 +465,7 @@ double OpenCLCalcGVolForceKernel::execute(ContextImpl& context, bool includeForc
 	std::cout <<  "Tree Size: " <<  total_tree_size << std::endl;
 
 	if(useCutoff){
-	  vector<cl_int> icount(1024);
+	  vector<cl_uint> icount(1);
 	  nb.getInteractionCount().download(icount);
 	  cout << "Using cutoff" << endl;
 	  cout << "Number of interacting tiles: " << icount[0] << endl;
