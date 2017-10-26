@@ -2,6 +2,8 @@
 
 A plugin that implements the Gaussian molecular volume and surface area model[1,2,3] in OpenMM.
 
+Support for this model continues as part of the [AGBNP OpenMM plugin](https://github.com/egallicc/openmm_agbnp_plugin). Please refer to the AGBNP project for production work. 
+
 Emilio Gallicchio <egallicchio@brooklyn.cuny.edu>
 Last Modified: January 2017
 
