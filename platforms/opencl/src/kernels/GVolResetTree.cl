@@ -39,7 +39,7 @@ void resetTreeCounters(
   for(int slot=begin; slot<end ; slot+=nblock){
     ovChildrenReported[slot] = 0;
   }
-
+  barrier(CLK_LOCAL_MEM_FENCE | CLK_GLOBAL_MEM_FENCE);    
 }
 
 
@@ -114,6 +114,7 @@ void resetTreeSection(
   for(int slot=begin; slot<end ; slot+=nblock) ovProcessedFlag[slot] = 0;
   for(int slot=begin; slot<end ; slot+=nblock) ovOKtoProcessFlag[slot] = 0;
   for(int slot=begin; slot<end ; slot+=nblock) ovChildrenReported[slot] = 0;
+  barrier(CLK_LOCAL_MEM_FENCE | CLK_GLOBAL_MEM_FENCE);    
 }
 
 
@@ -137,6 +138,7 @@ __kernel void resetBuffer(unsigned const int             bufferSize,
     id += get_global_size(0);
   }
 #endif
+  barrier(CLK_LOCAL_MEM_FENCE | CLK_GLOBAL_MEM_FENCE);    
 }
 
 
@@ -192,4 +194,5 @@ __kernel void resetTree(const int ntrees,
     ovAtomTreeLock[section] = 0;
     section += get_num_groups(0); //next section  
   }
+  barrier(CLK_LOCAL_MEM_FENCE | CLK_GLOBAL_MEM_FENCE);    
 }

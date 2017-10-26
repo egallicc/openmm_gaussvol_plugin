@@ -338,6 +338,9 @@ void OpenCLCalcGVolForceKernel::initialize(const System& system, const GVolForce
     ishydrogenParam->upload(ishydrogenVector);
 
     useCutoff = (force.getNonbondedMethod() != GVolForce::NoCutoff);
+    if(useCutoff){
+        throw OpenMMException("GaussVol/OpenCL does not support non-bonded cutoffs.");
+    }
     usePeriodic = (force.getNonbondedMethod() != GVolForce::NoCutoff && force.getNonbondedMethod() != GVolForce::CutoffNonPeriodic);
     useExclusions = false;
     cutoffDistance = force.getCutoffDistance();
