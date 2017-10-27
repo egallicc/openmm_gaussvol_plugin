@@ -582,7 +582,7 @@ static void test_gaussian(GOverlap_Tree &tree){
 
  GaussVol::GaussVol(int natoms, vector<RealOpenMM> &radii, 
 		    vector<RealOpenMM> &gammas, vector<bool>& ishydrogen_in){   
-
+   verbose_level = 0;
    tree.natoms = natoms;
    radius1 = radii;
    gamma = gammas;
@@ -625,11 +625,14 @@ static void test_gaussian(GOverlap_Tree &tree){
    		     grad1, 
    		     free_volume, self_volume); 
   
-   if(0){
-     cout << "Self Volumes:" << endl;
+   if(verbose_level > 0){
+    
+     if(verbose_level > 1) cout << "Self Volumes:" << endl;
      float mol_volume = 0;
      for(int i = 0; i < natoms; ++i) mol_volume += self_volume[i];
-     for(int i = 0; i < natoms; ++i) cout << i << " " << self_volume[i] << endl;
+     if(verbose_level > 1) {
+       for(int i = 0; i < natoms; ++i) cout << i << " " << self_volume[i] << endl;
+     }
      cout << "Mol Volume:" << mol_volume << endl;
    }
 
@@ -641,10 +644,10 @@ static void test_gaussian(GOverlap_Tree &tree){
 		       grad2, 
 		       free_volume2, self_volume2);
      energy = energy1 - energy2;
-     if(0) cout << "E: " << energy1 << " " << energy2 << endl;
+     if(verbose_level > 1) cout << "E: " << energy1 << " " << energy2 << endl;
    }else{
      energy = energy1;
-     cout << "E: " << energy1 << endl;
+     if(verbose_level > 1) cout << "E: " << energy1 << endl;
    }
 
    if(do_surf_energy){

@@ -106,6 +106,7 @@ class GaussVol {
   vector<RealOpenMM> self_volume2;
   vector<RealOpenMM> free_volume2;
   vector<bool> ishydrogen;
+  int verbose_level;
 };
 
 #endif //GAUSSVOL_H
