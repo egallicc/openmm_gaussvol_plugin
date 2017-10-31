@@ -24,11 +24,11 @@ prop = {"OpenCLPrecision" : "single"}
 
 
 
-print "Minimization/equilibration ..."
+print ("Minimization/equilibration ...")
 
 integrator = LangevinIntegrator(300*kelvin, 1.0/picosecond, 0.0005*picoseconds)
 simulation = Simulation(testDes.topology, system, integrator,platform)
-print "Using platform %s" % simulation.context.getPlatform().getName()
+print ("Using platform %s" % simulation.context.getPlatform().getName())
 simulation.context.setPositions(testDes.positions)
 simulation.context.setVelocities(testDes.velocities)
 state = simulation.context.getState(getEnergy = True)
@@ -44,7 +44,7 @@ simulation.step(1000)
 positions = simulation.context.getState(getPositions=True).getPositions()
 velocities = simulation.context.getState(getVelocities=True).getVelocities()
 
-print "Test energy conservation ..."
+print ("Test energy conservation ...")
 
 integrator = VerletIntegrator(0.001*picoseconds)
 simulation = Simulation(testDes.topology, system, integrator,platform)

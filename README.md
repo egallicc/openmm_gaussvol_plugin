@@ -67,6 +67,9 @@ python test_gaussvol.py
 
 where `<openmm_dir>` is the OpenMM installation directory.
 
+## External Reference
+The installation instructions for gaussVol using miniconda, openMM and Python2 (or Python3) can also be found in at  https://combiorecipe.wordpress.com.
+
 ## API
 
 The plugin implements an energy function of the form E=γA where γ is the surface tension parameter and A is the solute surface area. It is added to OpenMM's force stack and configured using standard OpenMM API calls (see `TestReferenceGVolForce.cpp` in the `test` directory of each platform and `desmonddmsfile.py` in `example` for specific examples).

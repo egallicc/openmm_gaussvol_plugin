@@ -85,7 +85,7 @@ class DesmondDMSFile(object):
                                       'cmdline: %(cmdline)s\n  executable: %(executable)s\n' % rowdict)
                     self.provenance = ''.join(provenance)
         except:
-            print "DesmondDMSFile: Warning, unable to retrieve provenance."
+            print ("DesmondDMSFile: Warning, unable to retrieve provenance.")
 
         # Build the topology
         self.topology, self.positions, self.velocities = self._createTopology()
@@ -152,7 +152,7 @@ class DesmondDMSFile(object):
                 elem = None
             else:
                 elem = Element.getByAtomicNumber(atomNumber)
-	    	
+            
             if atomName in atomReplacements:
                 atomName = atomReplacements[atomName]
 
@@ -160,7 +160,7 @@ class DesmondDMSFile(object):
             positions.append(mm.Vec3(x, y, z))
 
             velocities.append(mm.Vec3(vx, vy, vz))
-	
+    
         for p0, p1 in self._conn.execute('SELECT p0, p1 FROM bond'):
             top.addBond(atoms[p0], atoms[p1])
 
@@ -201,8 +201,8 @@ class DesmondDMSFile(object):
         --radiusN=radius-0.009  # Offset radius, the radius needs to be converted to nanometer unit
         --screenN=screened_radius*radiusN #Scaled offset radius 
         """
-	length_conv = u.angstrom.conversion_factor_to(u.nanometer)
-	
+        length_conv = u.angstrom.conversion_factor_to(u.nanometer)
+    
 
         q="""SELECT charge,radius,screened_radius FROM hct ORDER BY id"""
         
@@ -228,7 +228,7 @@ class DesmondDMSFile(object):
         """
         get charge, radius, etc. from AGBNP2 table in the .dms file and computes AGBNP2 parameters for each atom
         """
-	length_conv = u.angstrom.conversion_factor_to(u.nanometer)
+        length_conv = u.angstrom.conversion_factor_to(u.nanometer)
         en_conv = u.kilocalorie_per_mole.conversion_factor_to(u.kilojoule_per_mole)
         gamma_conv = en_conv/(length_conv*length_conv)
         alpha_conv = en_conv*length_conv*length_conv*length_conv;
@@ -286,7 +286,7 @@ class DesmondDMSFile(object):
            subtracted from the heavy atom to keep their total mass the same.
          - OPLS (boolean=False) If True, force field parameters are interpreted as OPLS parameters; OPLS variants of 
            torsional and non-bonded forces are constructed.
-	 - implicitSolvent (object=None) if not None, the implicit solvent model to use, the only allowed value is HCT
+     - implicitSolvent (object=None) if not None, the implicit solvent model to use, the only allowed value is HCT
         """
         self._checkForUnsupportedTerms()
         sys = mm.System()
@@ -326,8 +326,8 @@ class DesmondDMSFile(object):
             cnb.setNonbondedMethod(methodMap[nonbondedMethod])
             cnb.setCutoffDistance(nonbondedCutoff)
         
-	#add implicit solvent model. Right now, only HCT model is considered.
-	if implicitSolvent is not None:
+    #add implicit solvent model. Right now, only HCT model is considered.
+        if implicitSolvent is not None:
 
             print('Adding implicit solvent ...')
 
@@ -336,7 +336,7 @@ class DesmondDMSFile(object):
                 if gb_parms:
                     print('Adding HCT GB force ...')
                     gb = GBSAHCTForce(SA='ACE')
-                    for i in range(len(gb_parms)):	      
+                    for i in range(len(gb_parms)):          
                         gb.addParticle(list(gb_parms[i]))
                     sys.addForce(gb)
             
@@ -386,9 +386,9 @@ class DesmondDMSFile(object):
                             radiusN += Roffset;
                             gb.addParticle(radiusN, gammaN, h_flag)
                             #print "Adding", radiusN, gammaN, h_flag
-                        print "Adding GVolforce ..."
+                        print ("Adding GVolforce ...")
                         sys.addForce(gb)
-                        print "Done"
+                        print ("Done")
                 else:
                     print('Warning: GVol is not supported in this version')
 
@@ -402,7 +402,7 @@ class DesmondDMSFile(object):
                     transferMass = hydrogenMass-sys.getParticleMass(atom2.index)
                     sys.setParticleMass(atom2.index, hydrogenMass)
                     sys.setParticleMass(atom1.index, sys.getParticleMass(atom1.index)-transferMass)
-		
+        
         # Add a CMMotionRemover.
         if removeCMMotion:
             sys.addForce(mm.CMMotionRemover())
